@@ -136,24 +136,28 @@ html {
     background-size: cover;
     background-clip: content-box;
     border: 0.5rem dotted #a14b1a;
+    margin-left: -10rem;
 }
 .circle-2 {
     background: url(images/landing/circle-2-img.jpg) center no-repeat;
     background-size: cover;
     background-clip: content-box;
     border: 0.5rem dashed #ffbd07;
+    margin-right: -10rem;
 }
 .circle-3 {
     background: url(images/landing/circle-3-img.jpg) center no-repeat;
     background-size: cover;
     background-clip: content-box;
     border: 1rem double #9b0e0e;
+    margin-left: -10rem;
 }
 .circle-4 {
     background: url(images/landing/circle-4-img.jpg) center no-repeat;
     background-size: cover;
     background-clip: content-box;
     border: 0.7rem double #fff;
+    margin-right: -10rem;
 }
 
 .main-circle {
@@ -162,6 +166,12 @@ html {
     position: absolute;
     overflow: hidden;
     border-radius: 50%;
+    transition: width .2s, height .2s;
+}
+
+.main-circle:hover {
+    width: 75rem;
+    height: 75rem;
 }
 
 .main-circle img {
