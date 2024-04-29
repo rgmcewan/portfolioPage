@@ -39,7 +39,7 @@ html {
 .main-btn-content {
     width: 100%;
     height: 100%;
-    border: .2rem dotted #e7be08;
+    border: 0.2rem dotted #e7be08;
     border-radius: 50%;
     transform: rotate(40deg);
     transition: transform 0.2s, border 0.2s;
@@ -60,7 +60,7 @@ html {
 }
 
 .main-btn-line:nth-child(1) {
-    transform: rotateZ(-45deg) translateX(-.65rem);
+    transform: rotateZ(-45deg) translateX(-0.65rem);
     transform-origin: left center;
     border-right: none;
 }
@@ -86,12 +86,12 @@ html {
 
 .ripple {
     position: absolute;
-    width: 0%;
-    height: 0%;
+    width: 0;
+    height: 0;
     background-color: #e7be08;
     border-radius: 50%;
     transform: translate(-50%, -50%);
-    animation: rippleAnim .5s forwards;
+    animation: rippleAnim 0.5s forwards;
 }
 
 @keyframes rippleAnim {
@@ -159,6 +159,8 @@ html {
     width: 0.5rem;
     height: 0.5rem;
     background-color: #9b0e0e;
+    animation: mouseDotAnim 10s infinite linear;
+
 }
 
 /* End of Mouse Circle */
@@ -168,7 +170,7 @@ html {
     position: fixed;
     width: 100%;
     height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)),
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
         url(images/bg.jpg) center no-repeat;
     background-size: cover;
 }
@@ -443,7 +445,8 @@ html {
 .section-3 {
     width: 100%;
     height: 100%;
-    padding: 20rem 0 10rem 0;
+    padding: 10rem 0;
+    margin-top: 10rem;
     position: relative;
 }
 /* Projects */
@@ -515,6 +518,71 @@ html {
         transform: rotateY(0);
     }
 }
+
+/* Big Project Image */
+.project-img-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background-color: rgba(0,0,0,.9);
+    overflow: hidden scroll;
+    animation: imgWrapperAnim 1s forwards;
+}
+
+@keyframes imgWrapperAnim {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: 100%;
+    }
+}
+
+.project-img {
+    width: 100%;
+    border-radius: .5rem;
+    padding: 7rem 20rem;
+    opacity: 0.9;
+    transform-origin: top center;
+    animation: imgAnim 1s 1s both;
+}
+
+@keyframes imgAnim {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* End of Big Project Image */
+
+/* Project Hide Button */
+.project-hide-btn {
+    position: fixed;
+    top: 5rem;
+    right: 5rem;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+    cursor: pointer;
+    z-index: 10;
+    transform: scale(0);
+    visibility: hidden;
+}
+
+.change.project-hide-btn {
+    transform: scale(1);
+    visibility: visible;
+    transition: transform 0.5s;
+}
+/* End of Project Hide Button */
+
 /* End of Projects */
 /* End of Section 3 */
 

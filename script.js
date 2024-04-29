@@ -16,7 +16,7 @@ let mX = 0;
 let mY = 0;
 const z = 100;
 
-const animatedCircles = (e,x,y) => {
+const animateCircles = (e,x,y) => {
     if(x < mX) {
         circles.forEach((circle) => {
             circle.style.left = `${z}px`;
@@ -50,7 +50,7 @@ document.body.addEventListener("mousemove", (e) => {
     let y = e.clientY;
 
     mouseCircleFn(x, y);
-    animatedCircles(e,x,y);
+    animateCircles(e,x,y);
 });
 
 document.body.addEventListener("mouseleave", () => { // Mouse circle and dot disappear when cursor leaves window
@@ -59,9 +59,9 @@ document.body.addEventListener("mouseleave", () => { // Mouse circle and dot dis
 });
 
 // Main Button
-const mainBtns = document.querySelectorAll(".main-btn")
+const mainBtns = document.querySelectorAll(".main-btn");
 
-mainBtns.forEach(btn => {
+mainBtns.forEach((btn) => {
     let ripple;
 
 btn.addEventListener('mouseenter', (e) => {
@@ -78,7 +78,7 @@ btn.addEventListener('mouseenter', (e) => {
 btn.addEventListener("mouseleave", () => {
     btn.removeChild(ripple);
 });
-})
+});
 
 
 
@@ -96,11 +96,13 @@ Array.from(aboutMeTextContent).forEach((char) => {
 
     span.addEventListener('mouseenter',(e) => {
         e.target.style.animation = "aboutMeTextAnim 10s infinite"
-    })
+    });
 });
 // End of About Me text
 // Projects
-const projects = document.querySelectorAll(".project")
+const container = document.querySelector('.container');
+const projects = document.querySelectorAll(".project");
+const projectHideBtn = document.querySelector('.project-hide-btn');
 
 projects.forEach((project) => {
     project.addEventListener('mouseenter', () => {
@@ -110,6 +112,29 @@ projects.forEach((project) => {
 
     project.addEventListener('mouseleave', () => {
         project.firstElementChild.style.top = "2rem";
+    });
+
+    // Big Project Image
+    project.addEventListener("click", () => {
+        const bigImgWrapper = document.createElement("div");
+        bigImgWrapper.className = "project-img-wrapper";
+        container.appendChild(bigImgWrapper);
+
+        const bigImg = document.createElement('img');
+        bigImg.className = "project-img";
+        const imgPath = project.firstElementChild.getAttribute('src').split('.')[0];
+        console.log(imgPath);
+        bigImg.setAttribute("src", `${imgPath}-big.jpg`);
+        bigImgWrapper.appendChild(bigImg);
+        document.body.style.overflow = "hidden";
+
+        projectHideBtn.classList.add('change');
+
+        projectHideBtn.onclick = () => {
+            projectHideBtn.classList.remove('change');
+            bigImgWrapper.remove();
+            document.body.style.overflowY = 'scroll';
+        };
     });
 });
 // End of Projects
