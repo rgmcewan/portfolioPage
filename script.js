@@ -16,20 +16,20 @@ let mX = 0;
 let mY = 0;
 const z = 100;
 
-const animateCircles = (e,x,y) => {
-    if(x < mX) {
+const animateCircles = (e, x, y) => {
+    if (x < mX) {
         circles.forEach((circle) => {
             circle.style.left = `${z}px`;
         });
         mainImg.style.left = `${z}px`;
-    } else if(x > mX) {
+    } else if (x > mX) {
         circles.forEach((circle) => {
             circle.style.left = `-${z}px`;
         });
         mainImg.style.left = `-${z}px`;
     }
 
-    if(y < mY) {
+    if (y < mY) {
         circles.forEach((circle) => {
             circle.style.top = `${z}px`;
         });
@@ -141,29 +141,42 @@ projects.forEach((project, i) => {
     
 });
 // Projects Button
+const section3 = document.querySelector('.section-3')
 const projectsBtn = document.querySelector('.projects-btn')
 const projectsBtnText = document.querySelector('.projects-btn span')
 let showHideBool = true
+
+const showProjects = (project, i) => {
+    setTimeout(() => {
+        project.style.display = "flex";
+        section3.scrollIntoView({block: "end"});
+    }, 600);
+
+    setTimeout(() => {
+        project.style.opacity = "1";
+    }, i * 200);
+}
+
+const hideProjects = (project, i) => {
+    setTimeout(() => {
+        project.style.display = 'none';
+        section3.scrollIntoView({block: "end"});
+    }, 1200);
+
+    setTimeout(() => {
+        project.style.opacity = "0"
+    },i * 100);
+}
 
 projectsBtn.addEventListener('click', (e) => {
     e.preventDefault();
 
     projectsBtn.firstElementChild.nextElementSibling.classList.toggle('change');
 
+    showHideBool ? (projectsBtnText.textContent = 'Show Less') : (projectsBtnText.textContent = 'Show More');
+
     projects.forEach((project, i) => {
-        if(i >= 6) {
-            if(showHideBool) { //if showHideBool = true
-                project.style.display = "flex"
-                project.style.opacity = "1"
-
-                projectsBtnText.textContent = 'Show Less';
-            } else {
-                project.style.display = "none"
-                project.style.opacity = "0"
-
-                projectsBtnText.textContent = 'Show More';
-            }
-        }
+        i >= 6 && (showHideBool ? showProjects(project, i) : hideProjects(project, i));
     });
     showHideBool = !showHideBool;
 });
@@ -171,3 +184,19 @@ projectsBtn.addEventListener('click', (e) => {
 // End of Projects Button
 // End of Projects
 
+// Section 4
+document.querySelectorAll(".service-btn").forEach((service) => {
+    service.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const serviceText = service.nextElementSibling;
+        serviceText.classList.toggle("change");
+
+        const rightPosition = serviceText.classList.contains('change') ? `calc(100% - ${getComputedStyle(service.firstElementChild).width})`
+        : 0;
+
+        service.firstElementChild.style.right = rightPosition;
+    });
+});
+
+// End ofSection 4
